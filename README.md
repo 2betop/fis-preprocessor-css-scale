@@ -125,15 +125,14 @@ tpl文件, 注意：这里用的是{%style%}smarty插件语法，目的是为了
 ## 如何开起此插件？
 
 * 安装npm包。
-```bash
-npm install -g fis-prepackager-css-scale
-```
+    ```bash
+    npm install -g fis-prepackager-css-scale
+    ```
 
 * 配置`fis-conf.js`，开起此功能。
-
-```javascript
-fis.config.set('modules.prepackager', 'css-scale,' + fis.config.get('modules.prepackager'));
-```
+    ```javascript
+    fis.config.set('modules.prepackager', 'css-scale,' + fis.config.get('modules.prepackager'));
+    ```
 
 
 ## 担心图片自动缩放效果不好？
