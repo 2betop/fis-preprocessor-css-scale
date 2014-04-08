@@ -98,7 +98,7 @@ tpl文件
 {%else%}
     <!--否则，内嵌style.css, 同时把它缩放成0.5倍。-->
     {%style%}
-    @import url('/static/css/style.css?__embed&__scale=0.5');
+    @import url('/static/css/style.css?__embed&amp;__scale=0.5');
     {%/style%}
 {%/if%}
 ```
@@ -111,6 +111,14 @@ tpl文件
     {%require name="/static/css/style.css?__embed"%}
 {%else%}
     <!--否则，内嵌style.css, 同时把它缩放成0.5倍。-->
-    {%require name="/static/css/style.css?__embed&__scale=0.5"%}
+    {%require name="/static/css/style.css?__embed&amp;__scale=0.5"%}
 {%/if%}
 ```
+
+## 为什么使用`__embed`而不是我们熟悉的`__inline`?
+
+此插件运行时期为fis compile之后，内联工作已经完成，所以针对此类内联需求，
+需要用新语法`__embed`，然后在此插件中调用系统的compile，经过图片处理后再内联。
+
+另外为了实现这个功能，我们得改动fis的core部分，牵扯的东西比较多，修改风险比较大。
+所以暂时使用`__embed`, 作用与`__inline`完全一致。
