@@ -65,31 +65,49 @@ function isInline( info ) {
 }
 
 function parseHtml( content, file, ret, opt ) {
+    var escapedLd = fis.util.escapeReg(ld);
+    var escapedRd = fis.util.escapeReg(rd);
 
     // 匹配style
     var rStyle = '(?:(<style[^>]*?>)([\\s\\S]*?)(?=<\\/style\\s*>))';
 
+    // 匹配{%style%}{%/style%}
+    var rStyle2 = '(?:(' + escapedLd + 'style[^>]*?' + escapedRd +
+            ')([\\s\\S]*?)(?=' + escapedLd + '\\/style\\s*' + escapedRd + '))';
+
     // 匹配link
     var rLink = '(?:<(link)\\s+[\\s\\S]*?>)';
+
+    // html 注释
+    var rComment = '(<\\!--[\\s\\S]*?(?:-->|$))';
+
+    // smarty注释
+    var rComment2 = '(' + escapedLd + '\\*[\\s\\S]*?(?:\\*' + escapedRd +'|$))';
 
     // 匹配href
     var rHref = /(\s*(?:data-)?href\s*=\s*)('|")(.*?)\2/ig;
 
     var rName = /(\s*name\s*=\s*)('|")(.*?)\2/ig;
 
-    var rRequire = '(?:' + fis.util.escapeReg(ld) + 'require\\s+([\\s\\S]*?)' + fis.util.escapeReg(rd)+ ')'
+    var rRequire = '(?:' + escapedLd + 'require\\s+([\\s\\S]*?)' + escapedRd+ ')'
 
 
     // 合并这些规则，写一起实在是太长了，也分不开。
-    var reg  = new RegExp([ rStyle, rLink, rRequire ].join('|'), 'gi' );
+    var reg  = new RegExp([ rComment, rComment2, rStyle, rStyle2, rLink, rRequire ].join('|'), 'gi' );
 
-    return content.replace( reg, function( all, m1, m2, m3, m4 ) {
+    return content.replace( reg, function( all, c1, c2, s11, s12, s21, s22, m3, m4 ) {
         var inline = '',
             ref, isCssLink;
 
-        // style 部分
-        if ( m1 ) {
-            all = m1 + parseCss( m2, file, ret, opt );
+        // 忽略注释
+        if ( c1 || c2 ) {
+            return all;
+        } else if ( s11 ) {
+            // style部分
+            all = s11 + parseCss( s12, file, ret, opt );
+        } else if ( s22 ) {
+            // {%style%}部分
+            all = s21 + parseCss( s22, file, ret, opt );
         } else if ( m3 ) {
 
             // 不判断了，肯定是link
