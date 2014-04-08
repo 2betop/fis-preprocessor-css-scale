@@ -1,0 +1,19 @@
+{
+  "name": "fis-prepackager-css-scale",
+  "version": "0.0.1",
+  "description": "Automaticlly scale background images in the css file.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "css",
+    "scale",
+    "background-image"
+  ],
+  "author": "2betop",
+  "license": "ISC",
+  "dependencies": {
+    "images": "~2.0.0"
+  }
+}
