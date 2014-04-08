@@ -57,6 +57,14 @@ CSS 缩放器
     <!--引入style.css, 同时把它缩放成0.5倍。-->
     <link rel="stylesheet" type="text/css" href="/static/css/style.css?__scale=0.5">
     ...
+    <style type="text/css">
+    @import url('/static/css/style.css?__scale=0.5');
+
+    .ruler {
+        width: auto;
+    }
+    </style>
+    ...
 </html>
 ```
 
