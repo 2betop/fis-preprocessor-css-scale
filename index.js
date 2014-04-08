@@ -54,7 +54,7 @@ function addDeps(a, b){
 // ---------------------------------
 var cssFilter = require('./lib/cssFilter.js');
 
-var rEmbed = /(\?|&amp;|&)__embed(&amp;|&|$)/i;
+var rEmbed = /(\?|&amp;|&)__(?:embed|inline)(&amp;|&|$)/i;
 var rScale = /(\?|&amp;|&)__scale=([^&]*?)(&amp;|&|$)/i;
 
 // 全局变量，函数中多处用到。
@@ -107,6 +107,7 @@ function parseHtml( content, file, ret, opt ) {
             all = s11 + parseCss( s12, file, ret, opt );
         } else if ( s22 ) {
             // {%style%}部分
+            // console.log( s22, file.subpath );
             all = s21 + parseCss( s22, file, ret, opt );
         } else if ( m3 ) {
 
@@ -148,6 +149,7 @@ function parseHtml( content, file, ret, opt ) {
             // {%require name="xxx"%}
             // 只处理css类文件。
 
+            // console.log( m4 );
             all = all.replace( rName, function( _, prefix, quote, value ) {
 
                 var info = fis.uri( value, file.dirname );
@@ -195,6 +197,8 @@ function parseCss( content, file, ret, opt ) {
             return _;
         }
 
+        // console.log( value );
+
         var info = fis.uri( value, file.dirname );
         var pos = info.rest.indexOf(':');
         var ns = ~pos ? info.rest.substring( 0, pos ) : '';
@@ -217,7 +221,8 @@ function parseCss( content, file, ret, opt ) {
         if ( isInline( info ) ) {
             return map.embed.ld + quote + value.replace( rEmbed, '$1$2' ).replace(/(?:\?|&amp;|&)$/i, '') + quote + map.embed.rd;
         } else if ( rScale.test( value ) ) {
-            return '@import ' + map.uri.ld + quote + value + quote + map.uri.rd;
+            // console.log( value );
+            return '@import url(' + map.uri.ld + quote + value + quote + map.uri.rd +')';
         }
 
         return _;
@@ -314,9 +319,14 @@ function _process( file, ret, opt ) {
     file.setContent( content );
 }
 
+var hack = require('./lib/hack.js');
 
 // 程序入口
-module.exports = function( ret, conf, settings, opt ) {
+module.exports = function( content, file, settings ) {
+    return hack( prepackager, content, file, settings );
+};
+
+function prepackager( ret, conf, settings, opt ) {
     ld = settings.left_delimiter || fis.config.get('settings.smarty.left_delimiter') || '{%';
     rd = settings.right_delimiter || fis.config.get('settings.smarty.right_delimiter') || '%}';
 
