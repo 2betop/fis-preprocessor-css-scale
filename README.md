@@ -125,7 +125,7 @@ tpl文件, 注意：这里用的是{%style%}smarty插件语法，目的是为了
 
 设置一个noScale属性就ok了。如下：
 
-```
+```css
 .ruler {
     background: url(xxx.png?__noscale);
 }
