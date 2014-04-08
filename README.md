@@ -52,7 +52,7 @@ CSS 缩放器
 ```html
 <html>
     ...
-    <!--引入style.css, 同时把它缩放成0.5呗。-->
+    <!--引入style.css, 同时把它缩放成0.5倍。-->
     <link rel="stylesheet" type="text/css" href="/static/css/style.css?__scale=0.5">
     ...
 </html>
@@ -67,7 +67,7 @@ tpl文件
     <!--如果使用高清版本，则使用原始高清版本-->
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     {%else%}
-    <!--否则，引入style.css, 同时把它缩放成0.5呗。-->
+    <!--否则，引入style.css, 同时把它缩放成0.5倍。-->
     <link rel="stylesheet" type="text/css" href="/static/css/style.css?__scale=0.5">
     {%/if%}
     ...
@@ -81,7 +81,7 @@ tpl文件
 ```html
 <html>
     ...
-    <!--内嵌style.css, 同时把它缩放成0.5呗。-->
+    <!--内嵌style.css, 同时把它缩放成0.5倍。-->
     <link rel="stylesheet" type="text/css" href="/static/css/style.css?__scale=0.5&amp;__embed">
     ...
 </html>
@@ -96,7 +96,7 @@ tpl文件
     @import url('/static/css/style.css?__embed');
     {%/style%}
 {%else%}
-    <!--否则，内嵌style.css, 同时把它缩放成0.5呗。-->
+    <!--否则，内嵌style.css, 同时把它缩放成0.5倍。-->
     {%style%}
     @import url('/static/css/style.css?__embed&__scale=0.5');
     {%/style%}
@@ -110,7 +110,7 @@ tpl文件
     <!--如果使用高清版本，则使用原始高清版本-->
     {%require name="/static/css/style.css?__embed"%}
 {%else%}
-    <!--否则，内嵌style.css, 同时把它缩放成0.5呗。-->
+    <!--否则，内嵌style.css, 同时把它缩放成0.5倍。-->
     {%require name="/static/css/style.css?__embed&__scale=0.5"%}
 {%/if%}
 ```
