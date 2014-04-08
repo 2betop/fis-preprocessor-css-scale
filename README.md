@@ -83,11 +83,16 @@ tpl文件
     ...
     <!--内嵌style.css, 同时把它缩放成0.5倍。-->
     <link rel="stylesheet" type="text/css" href="/static/css/style.css?__scale=0.5&amp;__embed">
+    <!--或者-->
+    <style type="text/css">
+        @import url('/static/css/style.css?__scale=0.5&amp;__embed');
+    </style>
     ...
 </html>
 ```
 
-tpl文件
+tpl文件, 注意：这里用的是{%style%}smarty插件语法，目的是为了能做到条件输出。
+像普通的内联方式，是无法做到条件内联输出的。
 
 ```html
 {%if $condition%}
