@@ -92,10 +92,10 @@ tpl文件
 <html>
     ...
     <!--内嵌style.css, 同时把它缩放成0.5倍。-->
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css?__scale=0.5&amp;__embed">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css?__scale=0.5&amp;__inline">
     <!--或者-->
     <style type="text/css">
-        @import url('/static/css/style.css?__scale=0.5&amp;__embed');
+        @import url('/static/css/style.css?__scale=0.5&amp;__inline');
     </style>
     ...
 </html>
@@ -108,12 +108,12 @@ tpl文件, 注意：这里用的是{%style%}smarty插件语法，目的是为了
 {%if $condition%}
     <!--如果使用高清版本，则使用原始高清版本-->
     {%style%}
-    @import url('/static/css/style.css?__embed');
+    @import url('/static/css/style.css?__inline');
     {%/style%}
 {%else%}
     <!--否则，内嵌style.css, 同时把它缩放成0.5倍。-->
     {%style%}
-    @import url('/static/css/style.css?__embed&amp;__scale=0.5');
+    @import url('/static/css/style.css?__inline&amp;__scale=0.5');
     {%/style%}
 {%/if%}
 ```
@@ -123,10 +123,10 @@ tpl文件, 注意：这里用的是{%style%}smarty插件语法，目的是为了
 ```html
 {%if $condition%}
     <!--如果使用高清版本，则使用原始高清版本-->
-    {%require name="/static/css/style.css?__embed"%}
+    {%require name="/static/css/style.css?__inline"%}
 {%else%}
     <!--否则，内嵌style.css, 同时把它缩放成0.5倍。-->
-    {%require name="/static/css/style.css?__embed&amp;__scale=0.5"%}
+    {%require name="/static/css/style.css?__inline&amp;__scale=0.5"%}
 {%/if%}
 ```
 
@@ -161,11 +161,3 @@ Photoshop: ![photoshop缩放](./photoshop.png)
     background: url(xxx.png?__noscale);
 }
 ```
-
-## 为什么使用`__embed`而不是熟悉的`__inline`?
-
-此插件运行时期为fis compile之后，内联工作已经完成，所以针对此类内联需求，
-需要用新语法`__embed`，然后在此插件中调用系统的compile，经过图片处理后再内联。
-
-另外如果想要在fis的compile期就把词功能给做了，我们得改动fis的core部分，
-牵扯的东西比较多，修改风险比较大。 所以暂时使用`__embed`, 作用与`__inline`完全一致。
