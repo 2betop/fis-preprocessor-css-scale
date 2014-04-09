@@ -136,7 +136,7 @@ tpl文件, 注意：这里用的是{%style%}smarty插件语法，目的是为了
 ```bash
 npm install -g fis-preprocessor-css-scale
 ```
-* 配置`fis-conf.js`，开起此功能。
+* 配置`fis-conf.js`，针对css, html, tpl文件启用此功能！
 ```javascript
 fis.config.merge({
     ...
