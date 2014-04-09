@@ -102,7 +102,7 @@ tpl文件
 ```
 
 tpl文件, 注意：这里用的是{%style%}smarty插件语法，目的是为了能做到条件输出。
-像普通的内联方式，是无法做到条件内联输出的。
+同时，能保证这里面的样式是在页面头部输出的。像普通的内联方式，是无法做到条件内联输出的。
 
 ```html
 {%if $condition%}
@@ -134,11 +134,21 @@ tpl文件, 注意：这里用的是{%style%}smarty插件语法，目的是为了
 
 * 安装npm包。
 ```bash
-npm install -g fis-prepackager-css-scale
+npm install -g fis-preprocessor-css-scale
 ```
 * 配置`fis-conf.js`，开起此功能。
 ```javascript
-fis.config.set('modules.prepackager', 'css-scale,' + fis.config.get('modules.prepackager'));
+fis.config.merge({
+    ...
+    modules : {
+        preprocessor: {
+            css: 'css-scale',
+            html: 'css-scale',
+            tpl: 'css-scale'
+        }
+    },
+    ...
+});
 ```
 
 
