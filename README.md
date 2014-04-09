@@ -26,7 +26,7 @@ CSS 缩放器
 PS: `xxx.css?__scale`等价于`xxx.css?__scale=0.5`，
 后续例子都是使用的`xxx.css?__scale`。
 
-### 外链样式表资源。
+### 外链样式表
 
 html文件
 
