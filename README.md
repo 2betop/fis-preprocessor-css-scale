@@ -47,7 +47,9 @@ CSS 缩放器
 
 ## 如何使用？
 
-直接看demo吧！
+在引入css文件的时候通过query`__scale`来指定缩放比，比如： `xxx.css?__scale=0.5`。
+`xxx.css?__scale`等价于`xxx.css?__scale=0.5`， 如果需要指定其他缩放值可以这样设置，
+`xxx.css?__scale=0.75`。
 
 ### 外链样式表资源。
 

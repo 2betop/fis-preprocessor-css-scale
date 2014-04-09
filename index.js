@@ -55,7 +55,7 @@ function addDeps(a, b){
 var cssFilter = require('./lib/cssFilter.js');
 
 var rEmbed = /(\?|&amp;|&)__(?:embed|inline)(&amp;|&|$)/i;
-var rScale = /(\?|&amp;|&)__scale=([^&]*?)(&amp;|&|$)/i;
+var rScale = /(\?|&amp;|&)__scale(?:=([^&]*?))?(&amp;|&|$)/i;
 
 // 全局变量，函数中多处用到。
 var ld, rd;
@@ -262,7 +262,7 @@ function _process( file, ret, opt ) {
 
         info = fis.uri( value, file.dirname );
         scale = rScale.exec( info.query );
-        scale = scale && scale[ 2 ] || 1;
+        scale = (scale ? parseFloat( scale[ 2 ] ) || 0.5 : 0) || 1;
 
         var pos = info.rest.indexOf(':');
         var ns = ~pos ? info.rest.substring( 0, pos ) : '';
