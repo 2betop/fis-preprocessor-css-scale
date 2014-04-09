@@ -19,41 +19,16 @@ CSS 缩放器
 >> 默认只提供高清版本，普通版本自动生成如何？
 >>> Excellent, 此程序就是用来实现此方案的。
 
-## 具体细节
-
-针对高清屏幕的样式，我们往往会这么写。
-
-```css
-.ruler {
-    background: url('xxx_200x200.png');
-    background-size: 100px 100px;
-}
-```
-
-把它转成普通版本的样式，需要两步。
-
-1. 把图片`xxx_200x200.png`，通过`photoshop`缩小一倍， 变成`xxx_100x100.png`。
-2. 去掉`background-size`一条。
-
-最终变成。
-
-```css
-.ruler {
-    background: url('xxx_100x100.png');
-}
-```
-
-当然还有更多细节处理，这里不列出来！
-
 ## 如何使用？
 
 在引入css文件的时候通过query`__scale`来指定缩放比，比如： `xxx.css?__scale=0.5`。
-`xxx.css?__scale`等价于`xxx.css?__scale=0.5`， 如果需要指定其他缩放值可以这样设置，
-`xxx.css?__scale=0.75`。
+
+PS: `xxx.css?__scale`等价于`xxx.css?__scale=0.5`，
+后续例子都是使用的`xxx.css?__scale`。
 
 ### 外链样式表资源。
 
-普通html文件
+html文件
 
 ```html
 <html>
@@ -90,7 +65,7 @@ tpl文件
 
 ### 内联样式表
 
-普通html文件
+html文件
 
 ```html
 <html>
@@ -154,6 +129,32 @@ fis.config.merge({
     ...
 });
 ```
+
+## 具体细节
+
+针对高清屏幕的样式，我们往往会这么写。
+
+```css
+.ruler {
+    background: url('xxx_200x200.png');
+    background-size: 100px 100px;
+}
+```
+
+把它转成普通版本的样式，需要两步。
+
+1. 把图片`xxx_200x200.png`，通过`photoshop`缩小一倍， 变成`xxx_100x100.png`。
+2. 去掉`background-size`一条。
+
+最终变成。
+
+```css
+.ruler {
+    background: url('xxx_100x100.png');
+}
+```
+
+当然还有更多细节处理，这里不列出来！
 
 ## 担心图片自动缩放效果不好？
 
