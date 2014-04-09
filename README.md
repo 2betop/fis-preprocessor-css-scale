@@ -59,10 +59,10 @@ CSS 缩放器
 <html>
     ...
     <!--引入style.css, 同时把它缩放成0.5倍。-->
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css?__scale=0.5">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css?__scale">
     ...
     <style type="text/css">
-    @import url('/static/css/style.css?__scale=0.5');
+    @import url('/static/css/style.css?__scale');
 
     .ruler {
         width: auto;
@@ -82,7 +82,7 @@ tpl文件
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     {%else%}
     <!--否则，引入style.css, 同时把它缩放成0.5倍。-->
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css?__scale=0.5">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css?__scale">
     {%/if%}
     ...
 </html>
@@ -96,10 +96,10 @@ tpl文件
 <html>
     ...
     <!--内嵌style.css, 同时把它缩放成0.5倍。-->
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css?__scale=0.5&amp;__inline">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css?__scale&amp;__inline">
     <!--或者-->
     <style type="text/css">
-        @import url('/static/css/style.css?__scale=0.5&amp;__inline');
+        @import url('/static/css/style.css?__scale&amp;__inline');
     </style>
     ...
 </html>
@@ -117,7 +117,7 @@ tpl文件, 注意：这里用的是{%style%}smarty插件语法，目的是为了
 {%else%}
     <!--否则，内嵌style.css, 同时把它缩放成0.5倍。-->
     {%style%}
-    @import url('/static/css/style.css?__inline&amp;__scale=0.5');
+    @import url('/static/css/style.css?__inline&amp;__scale');
     {%/style%}
 {%/if%}
 ```
@@ -130,7 +130,7 @@ tpl文件, 注意：这里用的是{%style%}smarty插件语法，目的是为了
     {%require name="/static/css/style.css?__inline"%}
 {%else%}
     <!--否则，内嵌style.css, 同时把它缩放成0.5倍。-->
-    {%require name="/static/css/style.css?__inline&amp;__scale=0.5"%}
+    {%require name="/static/css/style.css?__inline&amp;__scale"%}
 {%/if%}
 ```
 
