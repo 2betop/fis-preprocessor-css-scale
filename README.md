@@ -1,7 +1,9 @@
-CSS 缩放器
+CSS 缩放器 Deprecated
 =========================
 什么是css缩放器？
 > 其实就是针对背景图片进行缩放，因为是跟样式捆绑的，所以我们叫样式缩放器。
+
+**用法不推荐，请移步至[此插件](https://github.com/2betop/fis-prepackager-css-scale)**
 
 ## 背景
 
