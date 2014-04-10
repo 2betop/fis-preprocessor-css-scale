@@ -1,18 +1,26 @@
 {
-  "name": "fis-prepackager-css-scale",
-  "version": "0.0.1",
-  "description": "Automaticlly scale background images in the css file.",
+  "name": "fis-preprocessor-css-scale",
+  "version": "0.1.0",
+  "description": "An css parser",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/2betop/fis-preprocessor-css-scale.git"
+  },
   "keywords": [
+    "fis",
     "css",
-    "scale",
-    "background-image"
+    "scaler"
   ],
   "author": "2betop",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2betop/fis-preprocessor-css-scale/issues"
+  },
+  "homepage": "https://github.com/2betop/fis-preprocessor-css-scale",
   "dependencies": {
     "images": "~2.0.0"
   }
